@@ -64,7 +64,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.vb" />
+    <Compile Include="ConexionDA.vb" />
+    <Compile Include="CanchaDA.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -99,6 +100,16 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary2\CapaNE.vbproj">
+      <Project>{B52DE381-FDCB-4852-8045-38236C0B5D42}</Project>
+      <Name>CapaNE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowsApplication1\Interfaces.vbproj">
+      <Project>{63A80BE8-F869-4F3D-BEB1-18F567D595D8}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
