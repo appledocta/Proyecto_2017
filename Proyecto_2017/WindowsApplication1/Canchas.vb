@@ -1,3 +1,8 @@
-﻿Public Class Canchas
+﻿Imports System.Data.SqlClient
+Public Class Canchas
+
+    Private Sub Canchas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 
 End Class

@@ -9,8 +9,8 @@
     </SchemaVersion>
     <ProjectGuid>{77945072-4804-42A5-BD64-642FDF82FFF8}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>CapaDA</RootNamespace>
+    <AssemblyName>CapaDA</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -21,7 +21,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>ClassLibrary1.xml</DocumentationFile>
+    <DocumentationFile>CapaDA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>ClassLibrary1.xml</DocumentationFile>
+    <DocumentationFile>CapaDA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -102,13 +102,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary2\CapaNE.vbproj">
+    <ProjectReference Include="..\ClassLibrary2\CapaNegocio.vbproj">
       <Project>{B52DE381-FDCB-4852-8045-38236C0B5D42}</Project>
-      <Name>CapaNE</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WindowsApplication1\Interfaces.vbproj">
-      <Project>{63A80BE8-F869-4F3D-BEB1-18F567D595D8}</Project>
-      <Name>Interfaces</Name>
+      <Name>CapaNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
