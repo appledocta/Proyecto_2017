@@ -1,16 +1,13 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Text.RegularExpressions
 
-
-Public Class ProveedoresDatos
+Public Class clientes
     Inherits conexion 'Incluimos la clase conexion 
     Dim cmd As New SqlCommand 'Variable para enviar peticiones a la BD
-
     Public Function mostrar() As DataTable
         Try
             conectado()
 
-            cmd = New SqlCommand("select id_proveedor,cuit ,razon_social,direccion,telefono,celular,mail,cod_postal,habilitado,observacion from Proveedor")
+            cmd = New SqlCommand("select Nro_doc, id_tipo_dni ,Nombre,Apellido,Fecha_nac,Fecha_alta 'Fecha de Alta',direccion,telefono,mail,Habilitado,observacion  from Cliente")
             cmd.CommandType = CommandType.Text
             cmd.Connection = cnn
 
@@ -31,21 +28,24 @@ Public Class ProveedoresDatos
         End Try
     End Function
 
-    Public Function insertar(ByVal dts As ProveedoresLogica) As Boolean
+    Public Function insertar(ByVal dts As ClientesLogica) As Boolean
         Try
             conectado()
-            cmd = New SqlCommand("insert into Proveedor(id_proveedor,cuit ,razon_social,direccion,telefono,celular,mail,cod_postal,habilitado,observacion)values (@id_proveedor,@cuit ,@razon_social,@direccion,@telefono,@celular,@mail,@cod_postal,@habilitado,@observacion)")
+            cmd = New SqlCommand("insert into cliente(nro_doc,nombre,apellido,fecha_nac,fecha_alta,direccion,telefono,celular,mail,habilitado,observacion)values (@nro_doc,@nombre,@apellido,@fecha_nac,@fecha_alta,@direccion,@telefono,@celular,@mail,@habilitado,@observacion)")
             cmd.CommandType = CommandType.Text
             cmd.Connection = cnn
 
-            cmd.Parameters.AddWithValue("@id_proveedor", dts.Id_proveedores)
-            cmd.Parameters.AddWithValue("@cuit", dts.Cuit)
-            cmd.Parameters.AddWithValue("@razon_social", dts.Razon_social)
+            cmd.Parameters.AddWithValue("@nro_doc", dts.Nro_Doc)
+            cmd.Parameters.AddWithValue("@nombre", dts.Nombre)
+
+            cmd.Parameters.AddWithValue("@apellido", dts.Apellido)
+            cmd.Parameters.AddWithValue("@fecha_nac", dts.Fecha_nac)
+
+            cmd.Parameters.AddWithValue("@fecha_alta", dts.Fecha_alta)
             cmd.Parameters.AddWithValue("@direccion", dts.Direccion)
             cmd.Parameters.AddWithValue("@telefono", dts.Telefono)
             cmd.Parameters.AddWithValue("@celular", dts.Celular)
             cmd.Parameters.AddWithValue("@mail", dts.Mail)
-            cmd.Parameters.AddWithValue("@cod_postal", dts.Cod_postal)
             cmd.Parameters.AddWithValue("@habilitado", dts.Habilitado)
             cmd.Parameters.AddWithValue("@observacion", dts.Observacion)
 
@@ -64,21 +64,24 @@ Public Class ProveedoresDatos
         End Try
     End Function
 
-    Public Function editar(ByVal dts As ProveedoresLogica) As Boolean
+    Public Function editar(ByVal dts As ClientesLogica) As Boolean
         Try
             conectado()
-            cmd = New SqlCommand("update Proveedor(id_proveedor,cuit ,razon_social,direccion,telefono,celular,mail,cod_postal,habilitado,observacion)values (@id_proveedor,@cuit ,@razon_social,@direccion,@telefono,@celular,@mail,@cod_postal,@habilitado,@observacion)")
+            cmd = New SqlCommand("update cliente(nro_doc,nombre,apellido,fecha_nac,fecha_alta,direccion,telefono,celular,mail,habilitado,observacion)values (@nro_doc,@nombre,@apellido,@fecha_nac,@fecha_alta,@direccion,@telefono,@celular,@mail,@habilitado,@observacion)")
             cmd.CommandType = CommandType.Text
             cmd.Connection = cnn
 
-            cmd.Parameters.AddWithValue("@id_proveedor", dts.Id_proveedores)
-            cmd.Parameters.AddWithValue("@cuit", dts.Cuit)
-            cmd.Parameters.AddWithValue("@razon_social", dts.Razon_social)
+            cmd.Parameters.AddWithValue("@nro_doc", dts.Nro_Doc)
+            cmd.Parameters.AddWithValue("@nombre", dts.Nombre)
+
+            cmd.Parameters.AddWithValue("@apellido", dts.Apellido)
+            cmd.Parameters.AddWithValue("@fecha_nac", dts.Fecha_nac)
+
+            cmd.Parameters.AddWithValue("@fecha_alta", dts.Fecha_alta)
             cmd.Parameters.AddWithValue("@direccion", dts.Direccion)
             cmd.Parameters.AddWithValue("@telefono", dts.Telefono)
             cmd.Parameters.AddWithValue("@celular", dts.Celular)
             cmd.Parameters.AddWithValue("@mail", dts.Mail)
-            cmd.Parameters.AddWithValue("@cod_postal", dts.Cod_postal)
             cmd.Parameters.AddWithValue("@habilitado", dts.Habilitado)
             cmd.Parameters.AddWithValue("@observacion", dts.Observacion)
 
@@ -97,14 +100,14 @@ Public Class ProveedoresDatos
         End Try
     End Function
 
-    Public Function eliminar(ByVal dts As ProveedoresLogica) As Boolean
+    Public Function eliminar(ByVal dts As ClientesLogica) As Boolean
         Try
             conectado()
-            cmd = New SqlCommand("delete Proveedor(id_proveedor,cuit ,razon_social,direccion,telefono,celular,mail,cod_postal,habilitado,observacion)values (@id_proveedor,@cuit ,@razon_social,@direccion,@telefono,@celular,@mail,@cod_postal,@habilitado,@observacion)")
+            cmd = New SqlCommand("delete cliente(nro_doc,nombre,apellido,fecha_nac,fecha_alta,direccion,telefono,celular,mail,habilitado,observacion)values (@nro_doc,@nombre,@apellido,@fecha_nac,@fecha_alta,@direccion,@telefono,@celular,@mail,@habilitado,@observacion)")
             cmd.CommandType = CommandType.Text
             cmd.Connection = cnn
 
-            cmd.Parameters.Add("@id_proveedor", SqlDbType.Int).Value = dts.Id_proveedores
+            cmd.Parameters.Add("@nro_doc", SqlDbType.VarChar, 8).Value = dts.Nro_Doc
             If cmd.ExecuteNonQuery Then
                 Return True
             Else
@@ -115,11 +118,5 @@ Public Class ProveedoresDatos
             Return False
 
         End Try
-    End Function
-
-    Public Function validar_Mail(ByVal Mail As String) As Boolean
-        ' retorna true o false   
-        Return Regex.IsMatch(Mail, _
-                  "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$")
     End Function
 End Class

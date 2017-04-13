@@ -16,12 +16,12 @@
         txtCuit.Text = ""
         txtRazonSocial.Text = ""
         txtDireccion.Text = ""
+        txtcod_postal.Text = ""
         txtTelefono.Text = ""
         txtCelular.Text = ""
-        txtMail.Text = ""
         txtcod_postal.Text = ""
-        ckbHabilitado.Text = ""
-        txtObservacion.Text = ""
+        cbHabilitar.Text = ""
+        cbInhabilitar.Text = ""
 
     End Sub
 
@@ -99,7 +99,7 @@
 
     Private Sub btnGuadar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardar.Click
 
-        If Me.ValidateChildren = True And txtid_proveedor.Text <> "" And txtCuit.Text <> "" And txtRazonSocial.Text <> "" And txtTelefono.Text <> "" And txtCelular.Text <> "" And txtMail.Text <> "" Then
+        If Me.ValidateChildren = True And txtid_proveedor.Text <> "" And txtCuit.Text <> "" And txtRazonSocial.Text <> "" And txtcod_postal.Text <> "" And txtTelefono.Text <> "" And txtCelular.Text <> "" Then
             Try
                 Dim dts As New ProveedoresLogica
                 Dim func As New ProveedoresDatos
@@ -109,14 +109,17 @@
                 dts._cuit = txtCuit.Text
                 dts._razon_social = txtRazonSocial.Text
                 dts._direccion = txtDireccion.Text
-                dts._telefono = txtTelefono.Text
-                dts._celular = txtCelular.Text
-                dts._mail = txtMail.Text
-                dts._cod_postal = txtCodPostal.text
+                dts._telefono = txtcod_postal.Text
+                dts._celular = txtTelefono.Text
+                dts._mail = txtCelular.Text
+                dts._cod_postal = txtcod_postal.Text
                 dts._habilitado = 0
-                dts._observacion = txtObservacion.Text
-
-
+               
+                If func.validar_Mail(LCase(txtCelular.Text)) = False Then
+                    MessageBox.Show("Dirección de correo electronico no valida, el correo debe tener el formato: nombre@dominio.com, " & " por favor seleccione un correo valido", "Validación de correo electronico", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    txtCelular.Focus()
+                    txtCelular.SelectAll()
+                End If
 
                 If func.insertar(dts) Then
                     MessageBox.Show("Proveedor cargado correctamente!", "Guardando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -145,12 +148,12 @@
         txtCuit.Text = dgvListado.SelectedCells.Item(2).Value
         txtRazonSocial.Text = dgvListado.SelectedCells.Item(3).Value
         txtDireccion.Text = dgvListado.SelectedCells.Item(4).Value
-        txtTelefono.Text = dgvListado.SelectedCells.Item(5).Value
-        txtCelular.Text = dgvListado.SelectedCells.Item(6).Value
-        txtMail.Text = dgvListado.SelectedCells.Item(7).Value
+        txtcod_postal.Text = dgvListado.SelectedCells.Item(5).Value
+        txtTelefono.Text = dgvListado.SelectedCells.Item(6).Value
+        txtCelular.Text = dgvListado.SelectedCells.Item(7).Value
         txtCod_postal.Text = dgvListado.SelectedCells.Item(8).Value
-        txtHabilitado.Text = dgvListado.SelectedCells.Item(9).Value
-        txtObservacion.Text = dgvListado.SelectedCells.Item(10).Value
+        cbHabilitar.Text = dgvListado.SelectedCells.Item(9).Value
+        cbInhabilitar.Text = dgvListado.SelectedCells.Item(10).Value
 
         btnEditar.Visible = True
         btnGuardar.Visible = False
@@ -166,7 +169,7 @@
         If result = DialogResult.OK Then
 
 
-            If Me.ValidateChildren = True And txtid_proveedor.Text <> "" And txtCuit.Text <> "" And txtRazonSocial.Text <> "" And txtTelefono.Text <> "" And txtCelular.Text <> "" And txtMail.Text <> "" Then
+            If Me.ValidateChildren = True And txtid_proveedor.Text <> "" And txtCuit.Text <> "" And txtRazonSocial.Text <> "" And txtcod_postal.Text <> "" And txtTelefono.Text <> "" And txtCelular.Text <> "" Then
                 Try
                     Dim dts As New ProveedoresLogica
                     Dim func As New ProveedoresDatos
@@ -176,12 +179,12 @@
                     dts._cuit = txtCuit.Text
                     dts._razon_social = txtRazonSocial.Text
                     dts._direccion = txtDireccion.Text
-                    dts._telefono = txtTelefono.Text
-                    dts._celular = txtCelular.Text
-                    dts._mail = txtMail.Text
-                    dts._cod_postal = txtCodPostal.text
+                    dts._telefono = txtcod_postal.Text
+                    dts._celular = txtTelefono.Text
+                    dts._mail = txtCelular.Text
+                    dts._cod_postal = txtcod_postal.Text
                     dts._habilitado = 0
-                    dts._observacion = txtObservacion.Text
+
 
                     If func.editar(dts) Then
                         MessageBox.Show("Proveedor modificado correctamente!", "Modificando registros", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -205,7 +208,7 @@
         End If
     End Sub
 
-    Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminar.Click
+    Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Dim result As DialogResult
 
@@ -249,11 +252,4 @@
         End If
     End Sub
 
-    Private Sub cbeliminar_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbeliminar.CheckedChanged
-        If cbeliminar.CheckState = CheckState.Checked Then
-            dgvListado.Columns.Item("Eliminar").Visible = True
-        Else
-            dgvListado.Columns.Item("Eliminar").Visible = False
-        End If
-    End Sub
 End Class

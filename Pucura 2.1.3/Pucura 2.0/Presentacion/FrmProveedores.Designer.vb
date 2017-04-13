@@ -23,10 +23,8 @@ Partial Class FrmProveedores
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.btnEliminar = New System.Windows.Forms.Button()
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.cbeliminar = New System.Windows.Forms.CheckBox()
         Me.lkNoexiste = New System.Windows.Forms.LinkLabel()
         Me.dgvListado = New System.Windows.Forms.DataGridView()
         Me.Eliminar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
@@ -36,12 +34,10 @@ Partial Class FrmProveedores
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnEditar = New System.Windows.Forms.Button()
         Me.btnNuevo = New System.Windows.Forms.Button()
-        Me.ckbHabilitado = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtObservacion = New System.Windows.Forms.TextBox()
-        Me.txtMail = New System.Windows.Forms.TextBox()
         Me.txtCelular = New System.Windows.Forms.TextBox()
         Me.txtTelefono = New System.Windows.Forms.TextBox()
+        Me.txtcod_postal = New System.Windows.Forms.TextBox()
         Me.txtDireccion = New System.Windows.Forms.TextBox()
         Me.txtRazonSocial = New System.Windows.Forms.TextBox()
         Me.txtCuit = New System.Windows.Forms.TextBox()
@@ -55,6 +51,9 @@ Partial Class FrmProveedores
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.txtMail = New System.Windows.Forms.TextBox()
+        Me.cbHabilitar = New System.Windows.Forms.CheckBox()
+        Me.cbInhabilitar = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.dgvListado, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,23 +64,12 @@ Partial Class FrmProveedores
         'GroupBox4
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.MediumSeaGreen
-        Me.GroupBox4.Controls.Add(Me.btnEliminar)
         Me.GroupBox4.Controls.Add(Me.btnBuscar)
         Me.GroupBox4.Location = New System.Drawing.Point(355, 397)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(331, 59)
         Me.GroupBox4.TabIndex = 7
         Me.GroupBox4.TabStop = False
-        '
-        'btnEliminar
-        '
-        Me.btnEliminar.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEliminar.Location = New System.Drawing.Point(190, 19)
-        Me.btnEliminar.Name = "btnEliminar"
-        Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
-        Me.btnEliminar.TabIndex = 4
-        Me.btnEliminar.Text = "Eliminar"
-        Me.btnEliminar.UseVisualStyleBackColor = True
         '
         'btnBuscar
         '
@@ -96,7 +84,8 @@ Partial Class FrmProveedores
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.MediumSeaGreen
-        Me.GroupBox3.Controls.Add(Me.cbeliminar)
+        Me.GroupBox3.Controls.Add(Me.cbInhabilitar)
+        Me.GroupBox3.Controls.Add(Me.cbHabilitar)
         Me.GroupBox3.Controls.Add(Me.lkNoexiste)
         Me.GroupBox3.Controls.Add(Me.dgvListado)
         Me.GroupBox3.Controls.Add(Me.txtBuscar)
@@ -108,16 +97,6 @@ Partial Class FrmProveedores
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Listado"
-        '
-        'cbeliminar
-        '
-        Me.cbeliminar.AutoSize = True
-        Me.cbeliminar.Location = New System.Drawing.Point(6, 57)
-        Me.cbeliminar.Name = "cbeliminar"
-        Me.cbeliminar.Size = New System.Drawing.Size(82, 18)
-        Me.cbeliminar.TabIndex = 4
-        Me.cbeliminar.Text = "Eliminar"
-        Me.cbeliminar.UseVisualStyleBackColor = True
         '
         'lkNoexiste
         '
@@ -207,25 +186,13 @@ Partial Class FrmProveedores
         Me.btnNuevo.Text = "Nuevo"
         Me.btnNuevo.UseVisualStyleBackColor = True
         '
-        'ckbHabilitado
-        '
-        Me.ckbHabilitado.AutoSize = True
-        Me.ckbHabilitado.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ckbHabilitado.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ckbHabilitado.Location = New System.Drawing.Point(214, 369)
-        Me.ckbHabilitado.Name = "ckbHabilitado"
-        Me.ckbHabilitado.Size = New System.Drawing.Size(96, 18)
-        Me.ckbHabilitado.TabIndex = 5
-        Me.ckbHabilitado.Text = "Habilitado"
-        Me.ckbHabilitado.UseVisualStyleBackColor = True
-        '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.MediumSeaGreen
-        Me.GroupBox1.Controls.Add(Me.txtObservacion)
         Me.GroupBox1.Controls.Add(Me.txtMail)
         Me.GroupBox1.Controls.Add(Me.txtCelular)
         Me.GroupBox1.Controls.Add(Me.txtTelefono)
+        Me.GroupBox1.Controls.Add(Me.txtcod_postal)
         Me.GroupBox1.Controls.Add(Me.txtDireccion)
         Me.GroupBox1.Controls.Add(Me.txtRazonSocial)
         Me.GroupBox1.Controls.Add(Me.txtCuit)
@@ -246,37 +213,28 @@ Partial Class FrmProveedores
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos"
         '
-        'txtObservacion
-        '
-        Me.txtObservacion.Location = New System.Drawing.Point(117, 222)
-        Me.txtObservacion.Multiline = True
-        Me.txtObservacion.Name = "txtObservacion"
-        Me.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtObservacion.Size = New System.Drawing.Size(183, 59)
-        Me.txtObservacion.TabIndex = 15
-        '
-        'txtMail
-        '
-        Me.txtMail.Location = New System.Drawing.Point(117, 194)
-        Me.txtMail.Name = "txtMail"
-        Me.txtMail.Size = New System.Drawing.Size(183, 22)
-        Me.txtMail.TabIndex = 14
-        '
         'txtCelular
         '
-        Me.txtCelular.Location = New System.Drawing.Point(117, 166)
-        Me.txtCelular.MaxLength = 9
+        Me.txtCelular.Location = New System.Drawing.Point(117, 194)
         Me.txtCelular.Name = "txtCelular"
         Me.txtCelular.Size = New System.Drawing.Size(183, 22)
-        Me.txtCelular.TabIndex = 13
+        Me.txtCelular.TabIndex = 14
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(117, 138)
+        Me.txtTelefono.Location = New System.Drawing.Point(117, 166)
         Me.txtTelefono.MaxLength = 9
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(183, 22)
-        Me.txtTelefono.TabIndex = 12
+        Me.txtTelefono.TabIndex = 13
+        '
+        'txtcod_postal
+        '
+        Me.txtcod_postal.Location = New System.Drawing.Point(117, 138)
+        Me.txtcod_postal.MaxLength = 9
+        Me.txtcod_postal.Name = "txtcod_postal"
+        Me.txtcod_postal.Size = New System.Drawing.Size(183, 22)
+        Me.txtcod_postal.TabIndex = 12
         '
         'txtDireccion
         '
@@ -314,9 +272,9 @@ Partial Class FrmProveedores
         Me.Label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label5.Location = New System.Drawing.Point(7, 223)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(98, 15)
+        Me.Label5.Size = New System.Drawing.Size(35, 15)
         Me.Label5.TabIndex = 7
-        Me.Label5.Text = "Observaciones"
+        Me.Label5.Text = "Mail"
         '
         'Label6
         '
@@ -325,9 +283,9 @@ Partial Class FrmProveedores
         Me.Label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label6.Location = New System.Drawing.Point(7, 195)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(35, 15)
+        Me.Label6.Size = New System.Drawing.Size(56, 15)
         Me.Label6.TabIndex = 6
-        Me.Label6.Text = "Mail"
+        Me.Label6.Text = "Celular"
         '
         'Label7
         '
@@ -336,9 +294,9 @@ Partial Class FrmProveedores
         Me.Label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label7.Location = New System.Drawing.Point(7, 167)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(56, 15)
+        Me.Label7.Size = New System.Drawing.Size(63, 15)
         Me.Label7.TabIndex = 5
-        Me.Label7.Text = "Celular"
+        Me.Label7.Text = "Telefono"
         '
         'Label8
         '
@@ -347,9 +305,9 @@ Partial Class FrmProveedores
         Me.Label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label8.Location = New System.Drawing.Point(7, 139)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(63, 15)
+        Me.Label8.Size = New System.Drawing.Size(77, 15)
         Me.Label8.TabIndex = 4
-        Me.Label8.Text = "Teléfono"
+        Me.Label8.Text = "Cod Postal"
         '
         'Label3
         '
@@ -369,9 +327,9 @@ Partial Class FrmProveedores
         Me.Label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label4.Location = New System.Drawing.Point(7, 85)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(63, 15)
+        Me.Label4.Size = New System.Drawing.Size(91, 15)
         Me.Label4.TabIndex = 2
-        Me.Label4.Text = "Apellido"
+        Me.Label4.Text = "Razon Social"
         '
         'Label2
         '
@@ -380,9 +338,9 @@ Partial Class FrmProveedores
         Me.Label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label2.Location = New System.Drawing.Point(7, 57)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(56, 15)
+        Me.Label2.Size = New System.Drawing.Size(35, 15)
         Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Nombres"
+        Me.Label2.Text = "Cuit"
         '
         'Label1
         '
@@ -391,9 +349,9 @@ Partial Class FrmProveedores
         Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label1.Location = New System.Drawing.Point(7, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(28, 15)
+        Me.Label1.Size = New System.Drawing.Size(21, 15)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "DNI"
+        Me.Label1.Text = "Id"
         '
         'btnGuardar
         '
@@ -403,6 +361,33 @@ Partial Class FrmProveedores
         Me.btnGuardar.TabIndex = 3
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
+        '
+        'txtMail
+        '
+        Me.txtMail.Location = New System.Drawing.Point(117, 223)
+        Me.txtMail.Name = "txtMail"
+        Me.txtMail.Size = New System.Drawing.Size(183, 22)
+        Me.txtMail.TabIndex = 15
+        '
+        'cbHabilitar
+        '
+        Me.cbHabilitar.AutoSize = True
+        Me.cbHabilitar.Location = New System.Drawing.Point(16, 60)
+        Me.cbHabilitar.Name = "cbHabilitar"
+        Me.cbHabilitar.Size = New System.Drawing.Size(89, 18)
+        Me.cbHabilitar.TabIndex = 4
+        Me.cbHabilitar.Text = "Habilitar"
+        Me.cbHabilitar.UseVisualStyleBackColor = True
+        '
+        'cbInhabilitar
+        '
+        Me.cbInhabilitar.AutoSize = True
+        Me.cbInhabilitar.Location = New System.Drawing.Point(154, 61)
+        Me.cbInhabilitar.Name = "cbInhabilitar"
+        Me.cbInhabilitar.Size = New System.Drawing.Size(103, 18)
+        Me.cbInhabilitar.TabIndex = 5
+        Me.cbInhabilitar.Text = "Inhabilitar"
+        Me.cbInhabilitar.UseVisualStyleBackColor = True
         '
         'FrmProveedores
         '
@@ -414,7 +399,6 @@ Partial Class FrmProveedores
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.ckbHabilitado)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "FrmProveedores"
         Me.Text = "Proveedores"
@@ -426,11 +410,9 @@ Partial Class FrmProveedores
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnEliminar As System.Windows.Forms.Button
     Friend WithEvents btnBuscar As System.Windows.Forms.Button
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents lkNoexiste As System.Windows.Forms.LinkLabel
@@ -442,12 +424,10 @@ Partial Class FrmProveedores
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnEditar As System.Windows.Forms.Button
     Friend WithEvents btnNuevo As System.Windows.Forms.Button
-    Friend WithEvents ckbHabilitado As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents txtObservacion As System.Windows.Forms.TextBox
-    Friend WithEvents txtMail As System.Windows.Forms.TextBox
     Friend WithEvents txtCelular As System.Windows.Forms.TextBox
     Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
+    Friend WithEvents txtcod_postal As System.Windows.Forms.TextBox
     Friend WithEvents txtDireccion As System.Windows.Forms.TextBox
     Friend WithEvents txtRazonSocial As System.Windows.Forms.TextBox
     Friend WithEvents txtCuit As System.Windows.Forms.TextBox
@@ -460,6 +440,8 @@ Partial Class FrmProveedores
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents cbeliminar As System.Windows.Forms.CheckBox
     Friend WithEvents btnGuardar As System.Windows.Forms.Button
+    Friend WithEvents txtMail As System.Windows.Forms.TextBox
+    Friend WithEvents cbInhabilitar As System.Windows.Forms.CheckBox
+    Friend WithEvents cbHabilitar As System.Windows.Forms.CheckBox
 End Class
