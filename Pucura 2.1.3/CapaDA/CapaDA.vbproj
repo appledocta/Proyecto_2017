@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CanchaDA.vb" />
-    <Compile Include="clientes.vb" />
+    <Compile Include="Class1.vb" />
     <Compile Include="Conexion.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -82,8 +82,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ProveedoresDatos.vb" />
-    <Compile Include="UsuariosDatos.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
