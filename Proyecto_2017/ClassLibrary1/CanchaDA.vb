@@ -34,16 +34,123 @@ Public Class CanchaDA
     Public Function Insertar_Cancha(ByVal dts As CanchaNE) As Boolean
         Try
             Conectado()
-            cmd = New SqlCommand()
+            cmd = New SqlCommand("insert into cancha (id_cancha,habilitado,precio_cancha,fechaActPrecio,descripcion) values(@id_cancha,@habilitado,@precio_cancha,@fechaActPrecio,@descripcion)")
             cmd.CommandType = CommandType.Text
             cmd.Connection = conn
 
-            cmd.Parameters.AddWithValue("@Id_cancha", dts.id_cancha)
-            cmd.Parameters.AddWithValue("@Habilitado", dts.habilitado)
+            'cmd.Parameters.AddWithValue("@Id_cancha", dts.id_cancha)
+            cmd.Parameters.AddWithValue("@Habilitado", dts.Habilitado)
+            cmd.Parameters.AddWithValue("@precio_cancha", dts.Precio_cancha)
+            cmd.Parameters.AddWithValue("@FechaActPrecio", dts.FechaActPrecio)
+            cmd.Parameters.AddWithValue("@Descripcion", dts.Descripcion)
 
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
 
         Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            Desconectado()
+        End Try
 
+    End Function
+
+    '******************************FUNCION EDITAR CANCHA*****************************************
+    Public Function Editar_Cancha(ByVal dts As CanchaNE) As Boolean
+        Try
+            Conectado()
+            cmd = New SqlCommand("update cancha set habilitado=@habilitado,precio_cancha=@precio_cancha,fechaActPrecio=fechaActPrecio,descripcion=@descripcion")
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = conn
+
+            cmd.Parameters.AddWithValue("@habilitado", dts.Habilitado)
+            cmd.Parameters.AddWithValue("precio_cancha", dts.Precio_cancha)
+            cmd.Parameters.AddWithValue("@fechaActPrecio", dts.FechaActPrecio)
+            cmd.Parameters.AddWithValue("@Descripcion", dts.Descripcion)
+
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            Desconectado()
+        End Try
+    End Function
+
+    '************************************FUNCION INHABILITAR CANCHA ***********************
+    Public Function Inhabilitar_cancha(ByVal dts As CanchaNE) As Boolean
+        Try
+            Conectado()
+            cmd = New SqlCommand("update cancha set habilitado=0 where id_cancha=@id_cancha")
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = conn
+
+            cmd.Parameters.AddWithValue("@Id_cancha", SqlDbType.Int).Value = dts.Id_Cancha
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            Desconectado()
+        End Try
+    End Function
+
+    '*************************************FUNCION HABILITAR CANCHA***************************
+    Public Function Habilitar_cancha(ByVal dts As CanchaNE) As Boolean
+        Try
+            Conectado()
+            cmd = New SqlCommand("update cancha set habilitado=1 where id_cancha=@id_cancha")
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = conn
+
+            cmd.Parameters.AddWithValue("@id_cancha", SqlDbType.Int).Value = dts.Id_Cancha
+
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            Desconectado()
+        End Try
+    End Function
+    '****************************************FUNCION BUSCAR CANCHA*******************************
+    Public Function Buscar_cancha(ByVal dts As CanchaNE) As Boolean
+        Try
+            Conectado()
+            cmd = New SqlCommand("select * from cancha where id_cancha=@id_cancha")
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = conn
+
+            cmd.Parameters.AddWithValue("@Id_cancha", dts.Id_Cancha)
+
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            Desconectado()
         End Try
     End Function
 End Class
